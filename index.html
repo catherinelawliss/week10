@@ -1,93 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+  <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- 	<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<title> Week 10 Assignment </title>
+  <title> Week 10 Assignment </title>
 
-	<style>
-		body{
-			text-align: center;
-			font-family: 'Quicksand';
-		}
-		h1{
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 30px;
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Quicksand';
+    }
+    h1{
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 30px;
 
-		}
+    }
 
-		h3{
-			font-weight: bold;
-			font-size: 18px;
-			font-weight: bold;
-			text-decoration: underline;
+    h3{
+      font-weight: bold;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: underline;
 
-		}
-		p{
-			font-style: italic;
-		}
-	</style>
+    }
+    p{
+      font-style: italic;
+    }
+  </style>
 
-	<script>
+  <script>
 function getTime(){
-	//instance of request object
-	request = new XMLHttpRequest(); 
-	console.log ("request object created");
+  //instance of request object
+  request = new XMLHttpRequest(); 
+  console.log ("request object created");
 
-	//URL for AJAX request 
-	request.open("GET", "http://worldtimeapi.org/api/ip", true); 
+  //URL for AJAX request 
+  request.open("GET", "http://worldclockapi.com/api/json/est/now", true); 
 
-	console.log("opened request file"); 
+  console.log("opened request file"); 
 
-	//set up event handler/callback
-	request.onreadystatechange = function(){
-		console.log("readystatechange event fired");
-		if(request.readyState == 4 && request.status == 200){
-			//wait for done and success
-			result = request.responseText; 
-			alert(result);
-			time = JSON.parse(result);
+  //set up event handler/callback
+  request.onreadystatechange = function(){
+    console.log("readystatechange event fired");
+    if(request.readyState == 4 && request.status == 200){
+      //wait for done and success
+      result = request.responseText; 
+      alert(result);
+      time = JSON.parse(result);
 
-			document.getElementById("data").innerHTML = 
-			"<b>Your IP address is : </b>" + time[
-			"client_ip"] 
-			+ "</br>" + "<b>Your timezone is: </b>" + time["timezone"]+ "</br>" + "<b>And the datetime is: </b>" + time["utc_datetime"] ;
-		}
-		else if (request.readyState == 4 && request.status != 200){
-			document.getElementById("data").innerHTML = "Something went wrong....OOPS!"
-		}
+      document.getElementById("data").innerHTML = 
+      "<b>Your timezone is: </b>" + time["timeZoneName"]+ "</br>" + "<b>The day of the week is: </b>" + time["dayOfTheWeek"] + "</br>" + "<b> And the current datetime is: </b>" + time["currentDateTime"] ;
+    }
+    else if (request.readyState == 4 && request.status != 200){
+      document.getElementById("data").innerHTML = "Something went wrong....OOPS!"
+    }
 
-		else if (request.readyState == 3){
-			document.getElementById("data").innerHTML = "Too soon, try again."
-		}
-	}
+    else if (request.readyState == 3){
+      document.getElementById("data").innerHTML = "Too soon, try again."
+    }
+  }
 
-	//fire HTTP request
-	request.send();
-	console.log ("request sent");
+  //fire HTTP request
+  request.send();
+  console.log ("request sent");
 }
 </script>
 
 </head>
 <body onload = "getTime()">
-	<h1> Time </h1>
-	<div id = 'data'> Calculating time...</div>
-	</br> </br>
-	<h3> API information: </h3>
-	<p> I used an API called "WorldTimeAPI" that returns the local time for a given timezone as JSON. The API takes the IP address of the user and determines what timezone they are in and gives additional information indlcuding that day of the year, day of the week, day-light savings times, etc. </br></br>
-	<b> Website: </b> http://worldtimeapi.org </br> </br>
-	<b>Options for API request:</b>  I choose to extract the user's IP address, timezone, and datetime. </br></br>
-	<b>Applications where API would be useful:</b> </br>
-		1. A Weather App </br>
-		2. A Scheduling App</br> 
-	</p>
+  <h1> Time </h1>
+  <div id = 'data'> Calculating time...</div>
+  </br> </br>
+  <h3> API information: </h3>
+  <p> I used an API called "WorldTimeAPI" that returns the local time for a given timezone as JSON. The API takes the IP address of the user and determines what timezone they are in and gives additional information indlcuding that day of the year, day of the week, day-light savings times, etc. </br></br>
+  <b> Website: </b> http://worldtimeapi.org </br> </br>
+  <b>Options for API request:</b>  I choose to extract the user's IP address, timezone, and datetime. </br></br>
+  <b>Applications where API would be useful:</b> </br>
+    1. A Weather App </br>
+    2. A Scheduling App</br> 
+  </p>
 </body>
 
 </html>
