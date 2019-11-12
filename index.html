@@ -39,10 +39,11 @@
 function getTime(){
 	//instance of request object
 	request = new XMLHttpRequest(); 
+	url = "http://worldtimeapi.org/api/ip";
 	console.log ("request object created");
 
 	//URL for AJAX request 
-	request.open("GET", "http://worldtimeapi.org/api/ip", true); 
+	request.open("GET", url, true); 
 
 	console.log("opened request file"); 
 
@@ -83,7 +84,7 @@ function getTime(){
 	<h3> API information: </h3>
 	<p> I used an API called "WorldTimeAPI" that returns the local time for a given timezone as JSON. The API takes the IP address of the user and determines what timezone they are in and gives additional information indlcuding that day of the year, day of the week, day-light savings times, etc. </br></br>
 	<b> Website: </b> http://worldtimeapi.org </br> </br>
-	<b>Options for API request:</b>  I choose to extract the user's IP address, timezone, and datetime. </br></br>
+	<b>Options for API request:</b>  the parameters I used for the API call were: IP address, timezone, and datetime. </br></br>
 	<b>Applications where API would be useful:</b> </br>
 		1. A Weather App </br>
 		2. A Scheduling App</br> 
