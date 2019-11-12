@@ -52,7 +52,7 @@ function getTime(){
 		if(request.readyState == 4 && request.status == 200){
 			//wait for done and success
 			result = request.responseText; 
-			alert(result);
+			//alert(result);
 			time = JSON.parse(result);
 
 			document.getElementById("data").innerHTML = 
